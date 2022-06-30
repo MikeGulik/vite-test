@@ -1,6 +1,25 @@
 <script>
   import logo from './assets/svelte.png'
   import Counter from './lib/Counter.svelte'
+  // import { registerSW } from "virtual:pwa-register";
+  console.log('h')
+// if ("serviceWorker" in navigator) {
+//   console.log('hi')
+//   // && !/localhost/.test(window.location)) {
+//   registerSW();
+//   console.log('hi2')
+// }
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log(`Service Worker registered! Scope: ${registration.scope}`);
+        })
+        .catch(err => {
+          console.log(`Service Worker registration failed: ${err}`);
+        });
+    });
+  }
 </script>
 
 <main>
