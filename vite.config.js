@@ -3,10 +3,14 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { VitePWA } from "vite-plugin-pwa"
 
 const pwaOptions = {
+  injectRegister: 'inline',
+  registerType: 'autoUpdate',
   mode: 'development',
-  base: '/',
-  srcDir: 'public',
   includeAssets: ['favicon.svg'],
+  workbox: {
+    clientsClaim: true,
+    skipWaiting: true,
+  },
   manifest: {
     name: 'PWA Router',
     short_name: 'PWA Router',
